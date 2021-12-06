@@ -51,6 +51,7 @@ public class OrderServiceTest {
         assertThat(getOrder.getOrderItems().size()).isEqualTo(1);
         assertThat(getOrder.getTotalPrice()).isEqualTo(10000 * orderCount);
         assertThat(book.getStockQuantity()).isEqualTo(8);
+
     }
 
     @Test(expected = NotEnoughStockException.class)
@@ -59,7 +60,7 @@ public class OrderServiceTest {
         Member member = createMember();
         Item item = createBook("시골 JPA", 10000, 10);
 
-        int orderCount = 11;
+        int orderCount = 11; // 재고보다 많은 수량
 
         //when
         orderService.order(member.getId(), item.getId(), orderCount);
